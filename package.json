@@ -1,0 +1,25 @@
+{
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=7.0.0"
+  },
+  "name": "treff-icp",
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "prebuild": "npm run prebuild --workspaces --if-present",
+    "pretest": "npm run prebuild --workspaces --if-present",
+    "start": "npm start --workspaces --if-present",
+    "test": "npm test --workspaces --if-present"
+  },
+  "type": "module",
+  "workspaces": [
+    "src/treff-icp-frontend"
+  ],
+  "dependencies": {
+    "react-horizontal-scrolling-menu": "^8.2.0",
+    "react-image-accordion": "^1.2.2",
+    "react-parallax": "^3.5.1",
+    "react-responsive-carousel": "^3.2.23",
+    "react-router-dom": "^6.28.0"
+  }
+}
