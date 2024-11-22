@@ -3,8 +3,10 @@ import { treff_icp_backend } from "declarations/treff-icp-backend";
 import Home from "./pages/Home";
 import { Route, Routes } from "react-router-dom";
 import { routes } from "./routes";
-import "bulma/css/bulma.min.css";
+// import "bulma/css/bulma.min.css";
+// import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
 import "./App.css";
+import "./index.scss";
 import LoadingIndicator from "./LoadingIndicator";
 import Navbar from "./components/Navbar";
 

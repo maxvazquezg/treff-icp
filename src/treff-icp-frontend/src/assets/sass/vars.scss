@@ -6,6 +6,39 @@ $link: #1BC1F4;
 $light: #F0F0F0;
 $cyan: #3B6673;
 
+// Set your brand colors
+$purple: #8a4d76;
+$pink: #fa7c91;
+$brown: #757763;
+$beige-light: #d0d1cd;
+$beige-lighter: #eff0eb;
+
+.is-primary {
+    background-color: $primary !important;
+}
+
+.is-link {
+    background-color: $link !important;
+}
+
+.is-light {
+    background-color: $light !important;
+}
+
+.is-cyan {
+    background-color: $cyan !important;
+}
+
+// // Override global Sass variables from the /utilities folder
+// @use "bulma/sass/utilities" with (
+//   $family-primary: '"Nunito", sans-serif',
+//   $grey-dark: $brown,
+//   $grey-light: $beige-light,
+//   $primary: $purple,
+//   $link: $pink,
+//   $control-border-width: 2px
+// );
+
 $navbar-item-color: $primary;
 $title-weight: 700;
 $title-size: 60px;

@@ -17,7 +17,7 @@ const LoadingIndicator = props => {
             dismissible={true}
             show={true}
         /> */}
-        <img src={getURLImage("images/spinner2.gif", true)} width={100} alt="loading" />
+        <img src={"images/spinner2.gif"} width={100} alt="loading" />
         </div>
     );
 }
