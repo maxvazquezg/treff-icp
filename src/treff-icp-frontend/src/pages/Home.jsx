@@ -1,48 +1,16 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import React, { useEffect, useRef, useState } from "react";
-// import { Parallax, Background } from "react-parallax";
-// import ScrollingMenu from "../components/ScrollingMenu";
+import { Parallax, Background } from "react-parallax";
+import ScrollingMenu from "../components/ScrollingMenu";
 import { Link, useNavigate } from "react-router-dom";
 import { routes } from "../routes";
-import ScrollingMenu from "../components/ScrollingMenu";
-// import { Carousel } from "primereact/carousel";
-// import { useSelector } from "react-redux";
-// import { Dialog } from "primereact/dialog";
-// import LoginModal from "../components/LoginModal";
-// import { CategoryApi, ServiceApi } from "../api";
-// import { getURLImage } from "../utils/images";
-// import { ReactImageAccordion } from "react-image-accordion";
-import { Carousel } from "react-responsive-carousel";
-
-interface Freelancer {
-  name: string;
-  service: string;
-  image: string;
-  backgroundImage: string;
-}
-
-interface FreelancerRanking {
-  id: number;
-  image: string;
-  name: string;
-}
-
-interface Service {
-  id: string;
-  name: string;
-  image: string;
-  freelancer: {
-    name: string;
-    photo?: string;
-  };
-  category: {
-    image: string;
-  };
-}
-
-interface UserState {
-  id?: string;
-}
+import { Carousel } from "primereact/carousel";
+import { useSelector } from "react-redux";
+import { Dialog } from "primereact/dialog";
+import LoginModal from "../components/LoginModal";
+import { CategoryApi, ServiceApi } from "../api";
+import { getURLImage } from "../utils/images";
+import { ReactImageAccordion } from "react-image-accordion";
 
 const responsiveOptions = [
   {
@@ -62,7 +30,187 @@ const responsiveOptions = [
   },
 ];
 
-const getFreelancersCardsTheme = (s:any) => {
+const accordionData = [
+  {
+    id: 1,
+    title: "Cliente",
+    image: "/images/pexels-fauxels-3184611 1.png",
+    alt: "first panel image",
+    content: (
+      <p className="has-text-justified mt-1 size-18 has-text-white">
+        Somos una plataforma única donde tendrás acceso a una variada oferta de
+        servicios brindados por freelancers comprometidos y altamente
+        capacitados para satisfacer tus necesidades. <br />
+        <br />
+        Al elegir TREFF, evitarás la complejidad de contratar grandes empresas.
+        En cambio, te beneficiarás de precios competitivos, un trato
+        personalizado y la seguridad de que cada proyecto será gestionado con
+        profesionalismo. Actuamos como mediadores entre tus requerimientos y la
+        entrega de trabajos de calidad, garantizando que tu experiencia sea
+        eficiente, satisfactoria y libre de complicaciones.
+        <br />
+        <br />
+        Bienvenido a TREFF, donde la contratación se vuelve simple, personal y
+        centrada en tus objetivos. Tu próximo proyecto merece la atención de
+        freelancers comprometidos, y nosotros estamos aquí para hacerlo posible.
+      </p>
+    ),
+    // svg: "aa (1).svg",
+  },
+  {
+    id: 2,
+    title: "Freelancer",
+    image: "/images/pexels-pavel-danilyuk-6764185 1.png",
+    alt: "second panel image",
+    content: (
+      <div className="has-text-white">
+        <p className="has-text-justified mt-1 size-18 has-text-white">
+          En TREFF, te proporcionamos una herramienta confiable diseñada para
+          que ofrezcas tus servicios como experto independiente de manera
+          amigable, ágil y segura.
+        </p>
+        <p className="has-text-justified mt-3 size-18 has-text-white">
+          {" "}
+          Nuestro compromiso es brindarte un respaldo constante, asegurando tus
+          pagos por los trabajos realizados de acuerdo con tus tiempos,
+          capacidades y tarifas . Nosotros reconocemos y valoramos la calidad y
+          puntualidad de los servicios que ofreces. Esto significa que tu
+          crecimiento en ventas y exposición será una consecuencia directa de la
+          apreciación de tu trabajo por parte del cliente y tus propios méritos.
+        </p>
+        <p className="has-text-justified mt-3 size-18 has-text-white">
+          Únete a TREFF, donde tu talento no solo es reconocido, sino también
+          recompensado. Aquí, tu camino hacia el éxito como freelancer comienza
+          con el respaldo y la plataforma adecuada para destacar en el mercado.
+        </p>
+      </div>
+    ),
+    // svg: <p>Hola</p>,
+  },
+];
+
+const freelancers = [
+  {
+    name: "Karen Buitrago",
+    service: "Marketing Digital",
+    image: "/images/pexels-kebs-visuals-3992656 1.png",
+    backgroundImage: "/images/pexels-dominika-roseclay-905163 1.png",
+  },
+  {
+    name: "Andres Castro",
+    service: "Fotografía",
+    image: "/images/pexels-kaique-rocha-598917 1.png",
+    backgroundImage: "/images/pexels-alexander-dummer-134469 1.png",
+  },
+  {
+    name: "Karen Buitrago",
+    service: "Marketing Digital",
+    image: "/images/pexels-pixabay-38289 1.png",
+    backgroundImage: "/images/pexels-li-sun-2294403 1.png",
+  },
+  {
+    name: "Karen Buitrago",
+    service: "Marketing Digital",
+    image: "/images/pexels-kebs-visuals-3992656 1.png",
+    backgroundImage: "/images/pexels-dominika-roseclay-905163 1.png",
+  },
+  {
+    name: "Karen Buitrago",
+    service: "Marketing Digital",
+    image: "/images/pexels-kebs-visuals-3992656 1.png",
+    backgroundImage: "/images/pexels-dominika-roseclay-905163 1.png",
+  },
+];
+
+const freelancersRanking = [
+  {
+    id: 14,
+    image: "url('" + "/images/pexels-pixabay-38289 2.png')",
+    name: "Andrea Mendes",
+  },
+  {
+    id: 2,
+    image:
+      "url('" +
+      "/images/pexels-kebs-visuals-3992656 2.png')",
+    name: "Karen Buitrago",
+  },
+  {
+    id: 15,
+    image:
+      "url('" +
+      "/images/pexels-omar-lópez-1182825 1.png')",
+    name: "Carlos Fajardo ",
+  },
+  {
+    id: 16,
+    image:
+      "url('" +
+      "/images/pexels-pixabay-415829 1.png')",
+    name: "Maria Jose Diaz",
+  },
+  {
+    id: 17,
+    image:
+      "url('" +
+      "/images/pexels-vinicius-wiesehofer-1130626 1.png')",
+    name: "Tatiana Torres",
+  },
+];
+
+const getServiceCards = (services, navigate) => {
+  return services.map((s, index) => (
+    <div
+      key={index}
+      className="column has-text-centered"
+      onClick={() => navigate(routes.EXPLORE + s.id)}
+    >
+      <div
+        className="service-card"
+        style={{
+          backgroundImage: "url('" + getURLImage(s.image) + "')",
+
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          cursor: "pointer",
+        }}
+      ></div>
+      <div
+        className="button-service has-text-centered"
+        style={{ cursor: "pointer" }}
+      >
+        {s.name}
+      </div>
+    </div>
+  ));
+};
+
+const getFreelancersRankingCards = () => {
+  return freelancersRanking.map((s, index) => (
+    <Link to={routes.FREELANCERPROFILE.replace(":id", s.id)}>
+      <div key={index} className="column has-text-centered">
+        <div
+          className="freelancer-card"
+          style={{
+            backgroundImage: s.image,
+
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "contain",
+            cursor: "pointer",
+          }}
+        ></div>
+        <div
+          className="button-ranking has-text-centered size-18"
+          style={{ cursor: "pointer" }}
+        >
+          {s.name}
+        </div>
+      </div>
+    </Link>
+  ));
+};
+
+const getFreelancersCardsTheme = (s) => {
   return (
     <Link to={routes.SERVICE.replace(":id", s.id)}>
       <div
@@ -84,11 +232,11 @@ const getFreelancersCardsTheme = (s:any) => {
           }}
         >
           <div className="content">
-            {/* <img
+            <img
               src={getURLImage(s.category?.image)}
               style={{ width: "100%" }}
               alt="servicio"
-            /> */}
+            />
           </div>
         </div>
         <footer
@@ -98,7 +246,7 @@ const getFreelancersCardsTheme = (s:any) => {
             height: "auto",
           }}
         >
-          {/* <img
+          <img
             className="rounded ml-4 mt-2"
             src={
               s.freelancer?.photo
@@ -106,7 +254,7 @@ const getFreelancersCardsTheme = (s:any) => {
                 : getURLImage("images/user_undefined.png", true)
             }
             alt="freelancer"
-          /> */}
+          />
           <p className="ml-4">
             <br />
             <b>{s.name}</b>
@@ -119,106 +267,41 @@ const getFreelancersCardsTheme = (s:any) => {
   );
 };
 
-const accordionData = [
-  {
-    id: 1,
-    title: "Cliente",
-    image:
-      // process.env.PUBLIC_URL +
-      "/images/pexels-fauxels-3184611 1.png",
-    alt: "first panel image",
-    content: (
-      <p className="has-text-justified mt-1 size-18 has-text-white">
-        Somos una plataforma única donde tendrás acceso a una variada oferta de
-        servicios brindados por freelancers comprometidos y altamente
-        capacitados para satisfacer tus necesidades. <br />
-        <br />
-        Al elegir TREFF, evitarás la complejidad de contratar grandes empresas.
-        En cambio, te beneficiarás de precios competitivos, un trato
-        personalizado y la seguridad de que cada proyecto será gestionado con
-        profesionalismo. Actuamos como mediadores entre tus requerimientos y la
-        entrega de trabajos de calidad, garantizando que tu experiencia sea
-        eficiente, satisfactoria y libre de complicaciones.
-        <br />
-        <br />
-        Bienvenido a TREFF, donde la contratación se vuelve simple, personal y
-        centrada en tus objetivos. Tu próximo proyecto merece la atención de
-        freelancers comprometidos, y nosotros estamos aquí para hacerlo posible.
-      </p>
-    ),
-  },
-  {
-    id: 2,
-    title: "Freelancer",
-    image:
-      // process.env.PUBLIC_URL +
-      "/images/pexels-pavel-danilyuk-6764185 1.png",
-    alt: "second panel image",
-    content: (
-      <div className="has-text-white">
-        <p className="has-text-justified mt-1 size-18 has-text-white">
-          En TREFF, te proporcionamos una herramienta confiable diseñada para
-          que ofrezcas tus servicios como experto independiente de manera
-          amigable, ágil y segura.
-        </p>
-        <p className="has-text-justified mt-3 size-18 has-text-white">
-          Nuestro compromiso es brindarte un respaldo constante, asegurando tus
-          pagos por los trabajos realizados de acuerdo con tus tiempos,
-          capacidades y tarifas. Nosotros reconocemos y valoramos la calidad y
-          puntualidad de los servicios que ofreces. Esto significa que tu
-          crecimiento en ventas y exposición será una consecuencia directa de la
-          apreciación de tu trabajo por parte del cliente y tus propios méritos.
-        </p>
-        <p className="has-text-justified mt-3 size-18 has-text-white">
-          Únete a TREFF, donde tu talento no solo es reconocido, sino también
-          recompensado. Aquí, tu camino hacia el éxito como freelancer comienza
-          con el respaldo y la plataforma adecuada para destacar en el mercado.
-        </p>
-      </div>
-    ),
-  },
-];
-
-const Home: React.FC = () => {
-  // const userRedux = useSelector<{ user: { value: UserState } }, UserState>(
-  //   (state: any) => state.user.value
-  // );
-  const userRedux = { id: "1" };
+const Home = () => {
+  const userRedux = useSelector((state) => state.user.value);
+  const userData = useState(userRedux);
   const [visibleLogin, setVisibleLogin] = useState(false);
-  const [categories, setCategories] = useState<Service[]>([]);
-  const [services, setServices] = useState<Service[]>([]);
+  const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
-
-  // const onCloseLogin = () => {
-  //   setVisibleLogin(false);
-  // };
+  const iframeRef = useRef(null);
+  const [services, setServices] = useState([]);
+  const onCloseLogin = () => {
+    setVisibleLogin(false);
+  };
 
   useEffect(() => {
-    // const getHighlightServices = async (byFreelancer = false) => {
-    //   const response = await ServiceApi.getHighlightServices(10, byFreelancer);
-    //   setServices(response);
-    // };
-    // getHighlightServices();
+    getHighlightServices();
   }, []);
 
   useEffect(() => {
-    // const getCategories = async () => {
-    //   const cat = await CategoryApi.getCategories();
-    //   setCategories(cat);
-    // };
-    // getCategories();
+    const getCategories = async () => {
+      const cat = await CategoryApi.getCategories();
+      setCategories(cat);
+    };
+    getCategories();
   }, []);
 
   // useEffect(() => {
   //   const observer = new IntersectionObserver(
   //     (entries) => {
-  //       if (entries[0].isIntersecting && iframeRef.current) {
-  //         if (iframeRef.current.src.indexOf("&autoplay=1") === -1) {
-  //           iframeRef.current.src += "&autoplay=1";
+  //       if (entries[0].isIntersecting) {
+  //         if (iframeRef && iframeRef.current && iframeRef.current.src) {
+  //           if (iframeRef.current.src.indexOf("&autoplay=1") === -1)
+  //             iframeRef.current.src += "&autoplay=1";
   //         }
   //       }
   //     },
-  //     { threshold: 0.5 }
+  //     { threshold: 0.5 } // Se activa cuando el 50% del iframe está visible
   //   );
 
   //   if (iframeRef.current) {
@@ -232,90 +315,70 @@ const Home: React.FC = () => {
   //   };
   // }, []);
 
-  const freelancersRanking = [
-    {
-      id: 14,
-      image: "url('" + "/images/pexels-pixabay-38289 2.png')",
-      name: "Andrea Mendes",
-    },
-    {
-      id: 2,
-      image: "url('" + "/images/pexels-kebs-visuals-3992656 2.png')",
-      name: "Karen Buitrago",
-    },
-    {
-      id: 15,
-      image: "url('" + "/images/pexels-omar-lópez-1182825 1.png')",
-      name: "Carlos Fajardo ",
-    },
-    {
-      id: 16,
-      image: "url('" + "/images/pexels-pixabay-415829 1.png')",
-      name: "Maria Jose Diaz",
-    },
-    {
-      id: 17,
-      image: "url('" + "/images/pexels-vinicius-wiesehofer-1130626 1.png')",
-      name: "Tatiana Torres",
-    },
-  ];
-
-  const getFreelancersRankingCards = () => {
-    return freelancersRanking.map((s: any, index) => (
-      <Link to={routes.FREELANCERPROFILE.replace(":id", s.id)}>
-        <div key={index} className="column has-text-centered">
-          <div
-            className="freelancer-card"
-            style={{
-              backgroundImage: s.image,
-
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "contain",
-              cursor: "pointer",
-            }}
-          ></div>
-          <div
-            className="button-ranking has-text-centered size-18"
-            style={{ cursor: "pointer" }}
-          >
-            {s.name}
-          </div>
-        </div>
-      </Link>
-    ));
-  };
-
-  const getServiceCards = (
-    services: Service[],
-    navigate: ReturnType<typeof useNavigate>
-  ) => {
-    return services.map((service) => (
-      <div
-        key={service.id}
-        className="column has-text-centered"
-        // onClick={() => navigate(routes.EXPLORE + service.id)}
-      >
-        <div
-          className="service-card"
-          style={{
-            // backgroundImage: `url('${getURLImage(service.image)}')`,
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
-            cursor: "pointer",
-          }}
-        ></div>
-        <div
-          className="button-service has-text-centered"
-          style={{ cursor: "pointer" }}
-        >
-          {service.name}
-        </div>
-      </div>
-    ));
+  const getHighlightServices = async (byFreelancer = false) => {
+    const response = await ServiceApi.getHighlightServices(10, byFreelancer);
+    setServices(response);
   };
 
   return (
-    <div>
+    <>
+      <Parallax
+        blur={0}
+        bgImageAlt="Treff"
+        bgImage={"/images/pexels-adil-2726478 1.png"}
+        strength={500}
+      >
+        <Background className="custom-bg">
+          <div
+            className="img-parallax"
+            style={{
+              backgroundImage: "url('" + "/images/pexels-adil-2726478 1.png')",
+              backgroundColor: "rgba(0, 0, 0, 0.4)",
+            }}
+          />
+        </Background>
+        <section
+          className="hero pb-0"
+          style={{ backgroundColor: "rgba(0, 0, 0, 0.4)" }}
+        >
+          <div className="hero-body">
+            <div className="columns">
+              <div className="column is-half is-offset-one-quarter mt-2 has-text-centered-mobile has-text-centered-tablet">
+                <img
+                  src={"/images/Treff_06_color_gradient 1.svg"}
+                  alt="logo"
+                  style={{ width: "5.5rem" }}
+                />
+              </div>
+            </div>
+
+            <div className="columns">
+              <div className="column is-three-fifths is-offset-1 mt-2 has-text-left is-full-mobile">
+                <div className="columns">
+                  <div className="column is-half is-four-fifths mt-3 has-text-left is-full-mobile">
+                    <h1 className="has-text-white title has-text-centered-mobile">
+                      Contrata un servicio
+                    </h1>
+                    <h2 className="subtitle mt-3 has-text-justified-mobile">
+                      Somos una herramienta confiable desarrollada para que
+                      ofrezcas tus servicios como experto independiente de una
+                      forma amigable, ágil y segura.
+                    </h2>
+                    <div className="has-text-centered-mobile">
+                      <Link to={routes.EXPLORE}>
+                        <button className="button is-primary button-secondary mt-3 mb-0">
+                          Contratar
+                        </button>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </Parallax>
+
       <section className="hero is-white">
         <div className="hero-body pt-3 pb-0">
           <div className="columns">
@@ -473,14 +536,14 @@ const Home: React.FC = () => {
                   />
                 </div>
               </div> */}
-              {/* <ReactImageAccordion
+              <ReactImageAccordion
                 accordionData={accordionData}
                 // AccordionWidth={AccordionWidth}
                 // AccordionHeight={AccordionHeight}
                 ContentSize={[100, 200]}
                 // onClick={}
                 ShowButton={false}
-              /> */}
+              />
             </div>
           </div>
         </div>
@@ -559,7 +622,7 @@ const Home: React.FC = () => {
 
               {/* <ScrollingMenu items={getFreelancersCards()} /> */}
               <div className="card">
-                {/* <Carousel
+                <Carousel
                   value={services}
                   numVisible={3}
                   numScroll={1}
@@ -567,7 +630,7 @@ const Home: React.FC = () => {
                   responsiveOptions={responsiveOptions}
                   itemTemplate={getFreelancersCardsTheme}
                   onTouchMove={() => {}}
-                /> */}
+                />
               </div>
             </div>
           </div>
@@ -601,8 +664,7 @@ const Home: React.FC = () => {
         className="hero is-primary hero-opacity"
         style={{
           backgroundImage:
-            "url('" +
-            "/images/pexels-tima-miroshnichenko-5453824 1.png')",
+            "url('" + "/images/pexels-tima-miroshnichenko-5453824 1.png')",
           backgroundPosition: "center",
         }}
       >
@@ -612,9 +674,7 @@ const Home: React.FC = () => {
               <h1 className="has-text-white title">
                 <img
                   className="img-footer"
-                  src={
-                    "/images/Logo Treff blanco  2 (1).png"
-                  }
+                  src={"/images/Logo Treff blanco  2 (1).png"}
                   alt="treff"
                 />
               </h1>
@@ -622,15 +682,15 @@ const Home: React.FC = () => {
           </div>
         </div>
       </section>
-      {/* <Dialog
+      <Dialog
         visible={visibleLogin}
         onHide={() => setVisibleLogin(false)}
         breakpoints={{ "1024px": "75vw", "960px": "75vw", "640px": "100vw" }}
         // style={{ width: "50vw" }}
       >
         <LoginModal onClose={() => onCloseLogin()} />
-      </Dialog> */}
-    </div>
+      </Dialog>
+    </>
   );
 };
 

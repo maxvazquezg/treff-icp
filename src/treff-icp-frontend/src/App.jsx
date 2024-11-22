@@ -1,9 +1,18 @@
-import { useState } from 'react';
-import { treff_icp_backend } from 'declarations/treff-icp-backend';
-import Home from './pages/Home';
+import { useState } from "react";
+import { treff_icp_backend } from "declarations/treff-icp-backend";
+import Home from "./pages/Home";
+import { Route, Routes } from "react-router-dom";
+import { routes } from "./routes";
+import "bulma/css/bulma.min.css";
+import "./App.css";
+import LoadingIndicator from "./LoadingIndicator";
+import Navbar from "./components/Navbar";
+
+import { ScrollTop } from 'primereact/scrolltop';
+        
 
 function App() {
-  const [greeting, setGreeting] = useState('');
+  const [greeting, setGreeting] = useState("");
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -16,7 +25,11 @@ function App() {
 
   return (
     <main>
-      {/* <img src="/logo2.svg" alt="DFINITY logo" />
+      <LoadingIndicator />
+      <Navbar />
+      <ScrollTop />
+      <Routes>
+        {/* <img src="/logo2.svg" alt="DFINITY logo" />
       <br />
       <br />
       <form action="#" onSubmit={handleSubmit}>
@@ -25,7 +38,8 @@ function App() {
         <button type="submit">Click Me!</button>
       </form>
       <section id="greeting">{greeting}</section> */}
-      <Home />
+        <Route path={routes.HOME} element={<Home />} />
+      </Routes>
     </main>
   );
 }

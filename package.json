@@ -16,10 +16,29 @@
     "src/treff-icp-frontend"
   ],
   "dependencies": {
+    "@microsoft/signalr": "^8.0.7",
+    "@reduxjs/toolkit": "^2.3.0",
+    "axios": "^1.7.7",
+    "bulma": "^1.0.2",
+    "i": "^0.3.7",
+    "npm": "^10.9.0",
+    "primereact": "^10.8.4",
+    "react-bulma-components": "^4.1.0",
+    "react-hook-form": "^7.53.2",
     "react-horizontal-scrolling-menu": "^8.2.0",
     "react-image-accordion": "^1.2.2",
+    "react-loader-spinner": "^6.1.6",
     "react-parallax": "^3.5.1",
+    "react-promise-tracker": "^2.1.1",
+    "react-redux": "^9.1.2",
     "react-responsive-carousel": "^3.2.23",
-    "react-router-dom": "^6.28.0"
+    "react-router-dom": "^6.28.0",
+    "react-social-login-buttons": "^4.1.0",
+    "reactjs-social-login": "^2.6.3",
+    "redux-persist": "^6.0.0"
+  },
+  "devDependencies": {
+    "sass": "^1.81.0",
+    "sass-loader": "^16.0.3"
   }
 }
