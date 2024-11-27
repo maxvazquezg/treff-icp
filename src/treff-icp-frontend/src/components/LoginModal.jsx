@@ -46,7 +46,7 @@ const LoginModal = (props) => {
         <div className="has-text-centered">
           <img
             src={
-              process.env.PUBLIC_URL + "/images/Treff_03_color_gradient 2.png"
+              "/images/Treff_03_color_gradient 2.png"
             }
             alt="Logo"
             height={87}

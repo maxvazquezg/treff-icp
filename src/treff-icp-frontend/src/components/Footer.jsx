@@ -94,11 +94,6 @@ export default function Footer(props) {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    {/* <img
-                      className="mr-5 img-33"
-                      src={process.env.PUBLIC_URL + "/images/Group 46.png"}
-                      alt="instagram"
-                    /> */}
                     <FontAwesomeIcon
                       className="mr-5 img-33"
                       icon={faInstagram}
@@ -110,11 +105,6 @@ export default function Footer(props) {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    {/* <img
-                      className="mr-5 img-33"
-                      src={process.env.PUBLIC_URL + "/images/Vector (1).png"}
-                      alt="X"
-                    /> */}
                     <FontAwesomeIcon
                       className="mr-5 img-33"
                       icon={faXTwitter}
@@ -126,11 +116,6 @@ export default function Footer(props) {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    {/* <img
-                      className="mr-5 img-33"
-                      src={process.env.PUBLIC_URL + "/images/Vector (2).png"}
-                      alt="facebook"
-                    /> */}
                     <FontAwesomeIcon
                       className="mr-5 img-33"
                       icon={faFacebook}

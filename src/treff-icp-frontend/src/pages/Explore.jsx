@@ -195,7 +195,6 @@ const Explore = () => {
           style={{
             backgroundImage:
               "url('" +
-              process.env.PUBLIC_URL +
               "/images/pexels-alexander-dummer-134469 2.png')",
             height: "150px",
           }}
@@ -213,7 +212,6 @@ const Explore = () => {
                   <img
                     className="pt-0 img-logo-287"
                     src={
-                      process.env.PUBLIC_URL +
                       "/images/Logo Treff blanco  2 (2).png"
                     }
                     alt="treff"

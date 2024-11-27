@@ -163,7 +163,7 @@ const AdminPage = () => {
       <div>
         <Link onClick={() => confirm(rowData)}>
           <img
-            src={process.env.PUBLIC_URL + "/images/delete.png"}
+            src={"/images/delete.png"}
             width="30"
             height={"50"}
             alt="profile"

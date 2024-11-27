@@ -91,7 +91,6 @@ const ExploreCategory = () => {
             backgroundImage: category.coverImage
               ? "url('" + getURLImage(category.coverImage) + "')"
               : "url('" +
-                process.env.PUBLIC_URL +
                 "/images/pexels-mateusz-dach-409480 1.png')",
           }}
         >
@@ -108,7 +107,6 @@ const ExploreCategory = () => {
                   <img
                     className="pt-0 img-logo-287"
                     src={
-                      process.env.PUBLIC_URL +
                       "/images/Logo Treff blanco  2 (2).png"
                     }
                     alt="treff"

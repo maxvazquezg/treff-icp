@@ -621,7 +621,7 @@ const Home = () => {
               <p className="subtitle-dark mb-3">Explorar Servicios</p>
 
               {/* <ScrollingMenu items={getFreelancersCards()} /> */}
-              <div className="card">
+              {/* <div className="card">
                 <Carousel
                   value={services}
                   numVisible={3}
@@ -631,7 +631,7 @@ const Home = () => {
                   itemTemplate={getFreelancersCardsTheme}
                   onTouchMove={() => {}}
                 />
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

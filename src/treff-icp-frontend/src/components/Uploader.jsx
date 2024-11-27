@@ -76,7 +76,7 @@ const Uploader = (props) => {
           <div className="column is-vcentered">
             <Link onClick={() => deleteElement(index)}>
               <img
-                src={process.env.PUBLIC_URL + "/images/delete.png"}
+                src={"/images/delete.png"}
                 width="20"
                 height={"40"}
                 className="ml-4"

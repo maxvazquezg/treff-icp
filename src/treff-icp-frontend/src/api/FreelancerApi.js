@@ -12,6 +12,18 @@ class FreelancerApi extends BaseApi {
     }
   }
 
+  async getFreelancerByPrincipal(principal) {
+    try {
+      const request = {
+        principal,
+      };
+      const data = await this.post(`${FREELANCER_ENDPOINT}/loginByPrincipal`, request);
+      return data.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
   async getServicesByFreelancerId(id) {
     try {
       const data = await this.get(`${FREELANCER_ENDPOINT}/services/${id}`);

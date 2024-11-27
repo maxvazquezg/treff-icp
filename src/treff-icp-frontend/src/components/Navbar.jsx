@@ -16,7 +16,7 @@ import {
   addLastNotifications,
   readNotifications,
 } from "../redux/notificationReducer";
-import { NotificationApi } from "../api";
+import { FreelancerApi, NotificationApi } from "../api";
 import NotificationsPanel from "./Notifications/NotificationsPanel";
 import { AuthClient } from "@dfinity/auth-client";
 
@@ -73,8 +73,6 @@ export default function Navbar(props) {
             <p className="p-18-black">{text}</p>
           </div>
         </div>
-        {/* <img src={process.env.PUBLIC_URL + image} alt="profile" />
-        <span className="ml-4">{text}</span> */}
       </Link>
     );
   };
@@ -262,14 +260,10 @@ export default function Navbar(props) {
       identityProvider: "http://bkyz2-fmaaa-aaaaa-qaaaq-cai.localhost:4943/",
       onSuccess: async () => {
         const identity = authClient.getIdentity();
-        console.log(identity.getPrincipal().toText());
-        const user = {
-          id: identity.getPrincipal().toText(),
-          name: "Max Vazquez",
-          photo: "",
-          isFreelancer: false,
-          isAdmin: false,
-        };
+        const principal = identity.getPrincipal().toText();
+        console.log(principal);
+
+        const user = await FreelancerApi.getFreelancerByPrincipal(principal);
         dispatch(addUser(user));
         localStorage.setItem("user", JSON.stringify(user));
         setUserData(user);
@@ -481,7 +475,7 @@ export default function Navbar(props) {
       <OverlayPanel
         ref={op}
         id="overlay_panel1"
-        style={{ width: "305px" }}
+        style={{ width: "305px", backgroundColor: "#fff" }}
         className="overlaypanel-demo"
       >
         <div className="container is-vcentered">
@@ -500,7 +494,7 @@ export default function Navbar(props) {
               <p className="p-18-black">{userData?.name}</p>
             </div>
           </div>
-          <hr className="mt-0 mb-2" />
+          <hr className="mt-0 mb-2" style={{backgroundColor: "#fff"}} />
           {createMenuProfile()}
         </div>
       </OverlayPanel>

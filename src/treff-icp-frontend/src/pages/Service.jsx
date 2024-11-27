@@ -158,10 +158,7 @@ const Service = () => {
                       </div>
                       <div className="column is-6 has-text-right is-vcentered">
                         {p.premium && (
-                          <img
-                            src={process.env.PUBLIC_URL + "/images/Plan.png"}
-                            alt="premuim"
-                          />
+                          <img src={"/images/Plan.png"} alt="premuim" />
                         )}
                       </div>
                     </div>
@@ -182,7 +179,7 @@ const Service = () => {
                           <div className="column is-2">
                             <img
                               width={20}
-                              src={getURLImage("images/clock.svg", true)}
+                              src={"images/clock.svg"}
                               alt="time"
                             />
                           </div>
@@ -192,7 +189,7 @@ const Service = () => {
                           <div className="column is-2">
                             <img
                               width={20}
-                              src={getURLImage("images/review.svg", true)}
+                              src={"images/review.svg"}
                               alt="time"
                             />
                           </div>
@@ -224,7 +221,7 @@ const Service = () => {
   return (
     <>
       <CustomSection type="white">
-      <BackButton back={true} />
+        <BackButton back={true} />
         <SectionContent type="light">
           <div className="columns is-multiline">
             <div className="column  is-6-widescreen is-12-tablet">
@@ -296,16 +293,14 @@ const Service = () => {
                         style={{ userSelect: "text" }}
                         leftIcon={
                           <img
-                            src={process.env.PUBLIC_URL + "/images/Atras.png"}
+                            src={"/images/Atras.png"}
                             alt="adelante"
                             width={50}
                           />
                         }
                         rightIcon={
                           <img
-                            src={
-                              process.env.PUBLIC_URL + "/images/Adelante.png"
-                            }
+                            src={"/images/Adelante.png"}
                             alt="adelante"
                             width={50}
                           />
@@ -416,7 +411,7 @@ const Service = () => {
                     <div className="has-text-centered mt-4">
                       <button
                         className="button is-light"
-                        style={{ width: "100%" , border: "1px solid #727272" }}
+                        style={{ width: "100%", border: "1px solid #727272" }}
                       >
                         Contactar vendedor
                       </button>
@@ -429,7 +424,7 @@ const Service = () => {
         </SectionContent>
       </CustomSection>
       <CustomSection type="white">
-        <ServicesByFreelancer freelancerId={service.freelancer?.id} />
+        {/* <ServicesByFreelancer freelancerId={service.freelancer?.id} /> */}
       </CustomSection>
       <Dialog
         visible={visibleLogin}
