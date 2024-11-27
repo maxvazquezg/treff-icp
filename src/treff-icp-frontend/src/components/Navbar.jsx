@@ -257,7 +257,7 @@ export default function Navbar(props) {
   const loginDefinity = async () => {
     const authClient = await AuthClient.create();
     authClient.login({
-      identityProvider: "http://bkyz2-fmaaa-aaaaa-qaaaq-cai.localhost:4943/",
+      identityProvider: "https://identity.ic0.app/",
       onSuccess: async () => {
         const identity = authClient.getIdentity();
         const principal = identity.getPrincipal().toText();
