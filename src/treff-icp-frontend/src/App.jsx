@@ -10,8 +10,17 @@ import "./index.scss";
 import LoadingIndicator from "./LoadingIndicator";
 import Navbar from "./components/Navbar";
 
-import { ScrollTop } from 'primereact/scrolltop';
-        
+import { ScrollTop } from "primereact/scrolltop";
+import AboutUs from "./pages/AboutUs";
+import HelpCenter from "./pages/HelpCenter";
+import Contact from "./pages/Contact";
+import Privacity from "./pages/Privacity";
+import Terms from "./pages/Terms";
+import ExploreCategory from "./pages/ExploreCategory";
+import Explore from "./pages/Explore";
+import Service from "./pages/Service";
+import ProjectPayment from "./pages/ProjectPayment";
+import Footer from "./components/Footer";
 
 function App() {
   const [greeting, setGreeting] = useState("");
@@ -41,7 +50,18 @@ function App() {
       </form>
       <section id="greeting">{greeting}</section> */}
         <Route path={routes.HOME} element={<Home />} />
+        <Route path={routes.ABOUT_US} element={<AboutUs />} />
+        <Route path={routes.HELP_CENTER} element={<HelpCenter />} />
+        <Route path={routes.CONTACT} element={<Contact />} />
+        <Route path={routes.PRIVACITY} element={<Privacity />} />
+        <Route path={routes.TERMS} element={<Terms />} />
+        <Route path={routes.EXPLORECATEGORY} element={<ExploreCategory />} />
+        <Route path={routes.EXPLORE} element={<Explore />} />
+        <Route path={routes.EXPLOREID} element={<Explore />} />
+        <Route path={routes.SERVICE} element={<Service />} />
+        <Route path={routes.NEWPROJECT} element={<ProjectPayment />} />
       </Routes>
+      <Footer />
     </main>
   );
 }

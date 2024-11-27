@@ -9,7 +9,7 @@ import { Avatar } from "primereact/avatar";
 import { Menu } from "primereact/menu";
 import { getURLImage } from "../utils/images";
 import { useDispatch, useSelector } from "react-redux";
-import { removeUser } from "../redux/userReducer";
+import { addUser, removeUser } from "../redux/userReducer";
 import { Notifications } from "./Notifications/Notifications";
 import { Badge } from "primereact/badge";
 import {
@@ -18,6 +18,7 @@ import {
 } from "../redux/notificationReducer";
 import { NotificationApi } from "../api";
 import NotificationsPanel from "./Notifications/NotificationsPanel";
+import { AuthClient } from "@dfinity/auth-client";
 
 export default function Navbar(props) {
   const dispatch = useDispatch();
@@ -255,6 +256,28 @@ export default function Navbar(props) {
     clickMenuHandler();
   };
 
+  const loginDefinity = async () => {
+    const authClient = await AuthClient.create();
+    authClient.login({
+      identityProvider: "http://bkyz2-fmaaa-aaaaa-qaaaq-cai.localhost:4943/",
+      onSuccess: async () => {
+        const identity = authClient.getIdentity();
+        console.log(identity.getPrincipal().toText());
+        const user = {
+          id: identity.getPrincipal().toText(),
+          name: "Max Vazquez",
+          photo: "",
+          isFreelancer: false,
+          isAdmin: false,
+        };
+        dispatch(addUser(user));
+        localStorage.setItem("user", JSON.stringify(user));
+        setUserData(user);
+        setVisibleLogin(false);
+      },
+    });
+  };
+
   return (
     <>
       <nav
@@ -408,7 +431,10 @@ export default function Navbar(props) {
               </Link>
               <Link
                 className="navbar-item"
-                onClick={() => setVisibleLogin(true)}
+                // onClick={() => setVisibleLogin(true)}
+                onClick={() => {
+                  loginDefinity();
+                }}
               >
                 Iniciar sesión
               </Link>
